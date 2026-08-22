@@ -1,0 +1,295 @@
+{
+  "_metadata": {
+    "version": "1.0.0",
+    "note": "DEMO DATA ONLY — prices are illustrative and not live market prices",
+    "last_updated": "2026-08-22",
+    "total_products": 15
+  },
+  "products": [
+    {
+      "id": "SP001",
+      "name": "Samsung Galaxy A55 5G",
+      "category": "smartphone",
+      "brand": "Samsung",
+      "price_inr": 22999,
+      "specs": {
+        "display": "6.6-inch Super AMOLED, 120Hz",
+        "processor": "Exynos 1480",
+        "ram": "8GB",
+        "storage": "128GB",
+        "camera": "50MP + 12MP + 5MP triple rear, 32MP front",
+        "battery": "5000mAh, 25W fast charge",
+        "os": "Android 14",
+        "5g": true
+      },
+      "tags": ["mid-range", "samsung", "5g", "good camera", "amoled"],
+      "demo_note": "Sample data only — price not live"
+    },
+    {
+      "id": "SP002",
+      "name": "Poco X6 Pro 5G",
+      "category": "smartphone",
+      "brand": "Poco",
+      "price_inr": 24999,
+      "specs": {
+        "display": "6.67-inch AMOLED, 144Hz",
+        "processor": "MediaTek Dimensity 8300 Ultra",
+        "ram": "12GB",
+        "storage": "256GB",
+        "camera": "64MP + 8MP + 2MP rear, 16MP front",
+        "battery": "5000mAh, 67W fast charge",
+        "os": "Android 14",
+        "5g": true
+      },
+      "tags": ["gaming", "performance", "144hz", "fast charging", "5g", "under 25000"],
+      "demo_note": "Sample data only — price not live"
+    },
+    {
+      "id": "SP003",
+      "name": "iQOO Z9 5G",
+      "category": "smartphone",
+      "brand": "iQOO",
+      "price_inr": 19999,
+      "specs": {
+        "display": "6.67-inch AMOLED, 120Hz",
+        "processor": "MediaTek Dimensity 7200",
+        "ram": "8GB",
+        "storage": "128GB",
+        "camera": "50MP + 2MP rear, 16MP front",
+        "battery": "5000mAh, 44W fast charge",
+        "os": "Android 14",
+        "5g": true
+      },
+      "tags": ["value for money", "5g", "amoled", "under 20000"],
+      "demo_note": "Sample data only — price not live"
+    },
+    {
+      "id": "SP004",
+      "name": "OnePlus Nord CE4 5G",
+      "category": "smartphone",
+      "brand": "OnePlus",
+      "price_inr": 24999,
+      "specs": {
+        "display": "6.7-inch AMOLED, 120Hz",
+        "processor": "Qualcomm Snapdragon 7s Gen 2",
+        "ram": "8GB",
+        "storage": "256GB",
+        "camera": "50MP + 8MP rear, 16MP front",
+        "battery": "5500mAh, 100W SuperVOOC",
+        "os": "Android 14",
+        "5g": true
+      },
+      "tags": ["oneplus", "fast charging", "snapdragon", "good camera", "5g", "under 25000"],
+      "demo_note": "Sample data only — price not live"
+    },
+    {
+      "id": "SP005",
+      "name": "Realme 12 Pro+ 5G",
+      "category": "smartphone",
+      "brand": "Realme",
+      "price_inr": 29999,
+      "specs": {
+        "display": "6.7-inch AMOLED, 120Hz",
+        "processor": "Qualcomm Snapdragon 7s Gen 2",
+        "ram": "12GB",
+        "storage": "256GB",
+        "camera": "50MP Sony LYT-600 periscope + 50MP + 8MP rear, 32MP front",
+        "battery": "5000mAh, 67W fast charge",
+        "os": "Android 14",
+        "5g": true
+      },
+      "tags": ["photography", "periscope zoom", "realme", "camera phone", "5g"],
+      "demo_note": "Sample data only — price not live"
+    },
+    {
+      "id": "LT001",
+      "name": "Lenovo IdeaPad Slim 3",
+      "category": "laptop",
+      "brand": "Lenovo",
+      "price_inr": 42999,
+      "specs": {
+        "display": "15.6-inch FHD IPS",
+        "processor": "AMD Ryzen 5 7520U",
+        "ram": "16GB DDR5",
+        "storage": "512GB SSD",
+        "graphics": "AMD Radeon 610M (integrated)",
+        "battery": "47Wh, up to 7 hours",
+        "os": "Windows 11 Home",
+        "weight": "1.62 kg"
+      },
+      "tags": ["budget", "student", "everyday use", "16gb ram", "amd"],
+      "demo_note": "Sample data only — price not live"
+    },
+    {
+      "id": "LT002",
+      "name": "ASUS VivoBook 16X",
+      "category": "laptop",
+      "brand": "ASUS",
+      "price_inr": 62999,
+      "specs": {
+        "display": "16-inch WUXGA IPS, 60Hz",
+        "processor": "Intel Core i5-12500H",
+        "ram": "16GB DDR4",
+        "storage": "512GB SSD",
+        "graphics": "NVIDIA GeForce RTX 2050 4GB",
+        "battery": "50Wh, up to 6 hours",
+        "os": "Windows 11 Home",
+        "weight": "1.9 kg"
+      },
+      "tags": ["coding", "ai development", "nvidia", "16gb ram", "rtx", "under 70000"],
+      "demo_note": "Sample data only — price not live"
+    },
+    {
+      "id": "LT003",
+      "name": "HP Pavilion 15",
+      "category": "laptop",
+      "brand": "HP",
+      "price_inr": 54999,
+      "specs": {
+        "display": "15.6-inch FHD IPS",
+        "processor": "AMD Ryzen 5 7530U",
+        "ram": "16GB DDR4",
+        "storage": "512GB SSD",
+        "graphics": "AMD Radeon Graphics (integrated)",
+        "battery": "41Wh, up to 8 hours",
+        "os": "Windows 11 Home",
+        "weight": "1.75 kg"
+      },
+      "tags": ["student", "office", "everyday use", "16gb ram", "amd", "long battery"],
+      "demo_note": "Sample data only — price not live"
+    },
+    {
+      "id": "LT004",
+      "name": "Acer Nitro V 15",
+      "category": "laptop",
+      "brand": "Acer",
+      "price_inr": 69999,
+      "specs": {
+        "display": "15.6-inch FHD IPS, 144Hz",
+        "processor": "Intel Core i5-13420H",
+        "ram": "16GB DDR5",
+        "storage": "512GB SSD",
+        "graphics": "NVIDIA GeForce RTX 4050 6GB",
+        "battery": "57.5Wh, up to 5 hours",
+        "os": "Windows 11 Home",
+        "weight": "2.5 kg"
+      },
+      "tags": ["gaming", "rtx 4050", "144hz", "coding", "ai development", "high performance", "under 70000"],
+      "demo_note": "Sample data only — price not live"
+    },
+    {
+      "id": "LT005",
+      "name": "Apple MacBook Air M2",
+      "category": "laptop",
+      "brand": "Apple",
+      "price_inr": 99900,
+      "specs": {
+        "display": "13.6-inch Liquid Retina",
+        "processor": "Apple M2 (8-core CPU, 8-core GPU)",
+        "ram": "8GB Unified Memory",
+        "storage": "256GB SSD",
+        "graphics": "Apple M2 8-core GPU",
+        "battery": "52.6Wh, up to 18 hours",
+        "os": "macOS Ventura",
+        "weight": "1.24 kg"
+      },
+      "tags": ["apple", "lightweight", "long battery", "premium", "macos", "developer"],
+      "demo_note": "Sample data only — price not live"
+    },
+    {
+      "id": "HP001",
+      "name": "Sony WH-1000XM5",
+      "category": "headphones",
+      "brand": "Sony",
+      "price_inr": 29999,
+      "specs": {
+        "type": "Over-ear",
+        "connectivity": "Bluetooth 5.2, 3.5mm",
+        "anc": true,
+        "battery": "30 hours (ANC on)",
+        "driver": "30mm",
+        "microphone": "8 mics with AI noise reduction",
+        "weight": "250g",
+        "foldable": false
+      },
+      "tags": ["anc", "premium", "sony", "wireless", "noise cancelling", "music", "travel"],
+      "demo_note": "Sample data only — price not live"
+    },
+    {
+      "id": "HP002",
+      "name": "JBL Tune 770NC",
+      "category": "headphones",
+      "brand": "JBL",
+      "price_inr": 7999,
+      "specs": {
+        "type": "Over-ear",
+        "connectivity": "Bluetooth 5.3, 3.5mm",
+        "anc": true,
+        "battery": "44 hours (ANC off), 34 hours (ANC on)",
+        "driver": "40mm",
+        "microphone": "Dual mic",
+        "weight": "190g",
+        "foldable": true
+      },
+      "tags": ["budget", "anc", "jbl", "wireless", "long battery", "value for money", "under 10000"],
+      "demo_note": "Sample data only — price not live"
+    },
+    {
+      "id": "HP003",
+      "name": "boAt Rockerz 550",
+      "category": "headphones",
+      "brand": "boAt",
+      "price_inr": 1999,
+      "specs": {
+        "type": "Over-ear",
+        "connectivity": "Bluetooth 5.0, 3.5mm",
+        "anc": false,
+        "battery": "20 hours",
+        "driver": "50mm",
+        "microphone": "Single mic",
+        "weight": "200g",
+        "foldable": true
+      },
+      "tags": ["budget", "boat", "wireless", "bass", "under 2000", "casual"],
+      "demo_note": "Sample data only — price not live"
+    },
+    {
+      "id": "HP004",
+      "name": "Sennheiser Momentum 4 Wireless",
+      "category": "headphones",
+      "brand": "Sennheiser",
+      "price_inr": 22999,
+      "specs": {
+        "type": "Over-ear",
+        "connectivity": "Bluetooth 5.2, 3.5mm",
+        "anc": true,
+        "battery": "60 hours (ANC on)",
+        "driver": "42mm",
+        "microphone": "3 mics",
+        "weight": "293g",
+        "foldable": true
+      },
+      "tags": ["audiophile", "premium", "sennheiser", "anc", "wireless", "long battery", "sound quality"],
+      "demo_note": "Sample data only — price not live"
+    },
+    {
+      "id": "HP005",
+      "name": "OnePlus Bullets Wireless Z2",
+      "category": "headphones",
+      "brand": "OnePlus",
+      "price_inr": 2499,
+      "specs": {
+        "type": "In-ear (neckband)",
+        "connectivity": "Bluetooth 5.0",
+        "anc": false,
+        "battery": "28 hours",
+        "driver": "12.4mm",
+        "microphone": "Dual mic",
+        "weight": "35g",
+        "foldable": false
+      },
+      "tags": ["budget", "neckband", "oneplus", "wireless", "commute", "under 3000"],
+      "demo_note": "Sample data only — price not live"
+    }
+  ]
+}
