@@ -1,4 +1,34 @@
+import { useState } from "react";
+
+import { api } from "../services/api";
 import type { RecommendationItem } from "../types";
+
+interface RazorpayCheckoutOptions {
+  key: string;
+  amount: number;
+  currency: string;
+  name: string;
+  description: string;
+  order_id: string;
+  handler: (response: RazorpayPaymentResponse) => void;
+  modal: {
+    ondismiss: () => void;
+  };
+}
+
+interface RazorpayPaymentResponse {
+  razorpay_payment_id: string;
+  razorpay_order_id: string;
+  razorpay_signature: string;
+}
+
+declare global {
+  interface Window {
+    Razorpay?: new (options: RazorpayCheckoutOptions) => {
+      open: () => void;
+    };
+  }
+}
 
 interface ProductRecommendationCardProps {
   recommendations: RecommendationItem[];
@@ -9,6 +39,69 @@ export function ProductRecommendationCard({
   recommendations,
   demoNote,
 }: ProductRecommendationCardProps) {
+  const [loadingProductId, setLoadingProductId] = useState<string | null>(null);
+  const [paymentError, setPaymentError] = useState<string | null>(null);
+  const [checkoutMessage, setCheckoutMessage] = useState<string | null>(null);
+  const [completedProductId, setCompletedProductId] = useState<string | null>(null);
+
+  const handleBuyNow = async (product: RecommendationItem["product"]) => {
+    setLoadingProductId(product.id);
+    setPaymentError(null);
+    setCheckoutMessage(null);
+    setCompletedProductId(null);
+
+    try {
+      const order = await api.createOrder(product.id, product.price_inr);
+
+      if (!window.Razorpay) {
+        throw new Error("Payment checkout is unavailable. Please refresh and try again.");
+      }
+
+      const checkout = new window.Razorpay({
+        key: order.key_id,
+        amount: order.amount,
+        currency: order.currency,
+        name: "ShopPilot AI",
+        description: order.product.name,
+        order_id: order.order_id,
+        handler: async (response) => {
+          try {
+            const verification = await api.verifyPayment(
+              response.razorpay_order_id,
+              response.razorpay_payment_id,
+              response.razorpay_signature,
+            );
+
+            if (!verification.verified) {
+              throw new Error("Payment verification failed");
+            }
+
+            setLoadingProductId(null);
+            setCompletedProductId(product.id);
+          } catch {
+            setLoadingProductId(null);
+            setPaymentError("Payment verification failed");
+          }
+        },
+        modal: {
+          ondismiss: () => {
+            setLoadingProductId(null);
+            setCheckoutMessage("Checkout was closed before payment was verified.");
+          },
+        },
+      });
+
+      checkout.open();
+    } catch (error) {
+      setLoadingProductId(null);
+      setPaymentError(
+        error instanceof Error
+          ? error.message
+          : "Unable to start checkout. Please try again."
+      );
+    }
+  };
+
   if (recommendations.length === 0) {
     return (
       <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-6 text-center space-y-2">
@@ -132,6 +225,30 @@ export function ProductRecommendationCard({
                     </span>
                   ))}
                 </div>
+              )}
+
+            {/* Buy Now */}
+              <button
+                type="button"
+                onClick={() => void handleBuyNow(product)}
+                disabled={loadingProductId !== null}
+                className="w-full rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-indigo-500 disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                {loadingProductId === product.id ? "Opening Checkout..." : "Buy Now"}
+              </button>
+
+              {paymentError && loadingProductId === null && (
+                <p role="alert" className="text-xs text-rose-400">
+                  {paymentError}
+                </p>
+              )}
+
+              {checkoutMessage && loadingProductId === null && !paymentError && (
+                <p className="text-xs text-amber-400">{checkoutMessage}</p>
+              )}
+
+              {completedProductId === product.id && (
+                <p className="text-xs text-emerald-400">Payment verified successfully</p>
               )}
 
               {/* Demo note footer per card */}

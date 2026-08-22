@@ -1,7 +1,16 @@
 // ShopPilot AI — API Service
 // All backend calls go through this module. Base URL is read from env vars.
 
-import type { IntentRequest, IntentResult, HealthResponse, RecommendResponse } from "../types";
+import type {
+  IntentRequest,
+  IntentResult,
+  HealthResponse,
+  RecommendResponse,
+  CreateOrderRequest,
+  CreateOrderResponse,
+  VerifyPaymentRequest,
+  VerifyPaymentResponse,
+} from "../types";
 
 
 const BASE_URL = (import.meta.env.VITE_API_BASE_URL as string) || "http://localhost:8000";
@@ -61,7 +70,7 @@ export const api = {
     });
   },
 
-  /** Analyze query and get recommended products */
+    /** Analyze query and get recommended products */
   recommend(query: string): Promise<RecommendResponse> {
     const body: IntentRequest = { query };
     return request<RecommendResponse>("/api/recommend", {
@@ -69,8 +78,35 @@ export const api = {
       body: JSON.stringify(body),
     });
   },
+
+  createOrder(productId: string, amountInr: number): Promise<CreateOrderResponse> {
+    const body: CreateOrderRequest = {
+      product_id: productId,
+      amount_inr: amountInr,
+    };
+
+    return request<CreateOrderResponse>("/api/orders", {
+      method: "POST",
+      body: JSON.stringify(body),
+    });
+  },
+
+  verifyPayment(
+    razorpayOrderId: string,
+    razorpayPaymentId: string,
+    razorpaySignature: string,
+  ): Promise<VerifyPaymentResponse> {
+    const body: VerifyPaymentRequest = {
+      razorpay_order_id: razorpayOrderId,
+      razorpay_payment_id: razorpayPaymentId,
+      razorpay_signature: razorpaySignature,
+    };
+
+    return request<VerifyPaymentResponse>("/api/payments/verify", {
+      method: "POST",
+      body: JSON.stringify(body),
+    });
+  },
 };
-
-
 
 export { ApiServiceError };
