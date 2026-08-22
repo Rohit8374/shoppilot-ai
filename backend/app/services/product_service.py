@@ -72,6 +72,13 @@ class ProductService:
         """Return all catalog products."""
         return self._products
 
+    def get_product(self, product_id: str) -> Optional[Product]:
+        """Return a product by ID."""
+        return next(
+            (product for product in self._products if product.id == product_id),
+            None,
+        )
+
     def recommend(self, intent: IntentResult, top_k: int = 5) -> RecommendResponse:
         """
         Filter, score, and rank catalog products matching user intent.

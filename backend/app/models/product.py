@@ -69,3 +69,15 @@ class RecommendResponse(BaseModel):
     total_found: int = Field(default=0, description="Total products matching category + budget before ranking")
     demo_note: str = "Product data is sample/demo only — prices are not live market prices"
 
+from pydantic import BaseModel, Field
+
+
+class CreateOrderRequest(BaseModel):
+    product_id: str = Field(min_length=1)
+    amount_inr: float = Field(gt=0)
+
+
+class VerifyPaymentRequest(BaseModel):
+    razorpay_order_id: str
+    razorpay_payment_id: str
+    razorpay_signature: str

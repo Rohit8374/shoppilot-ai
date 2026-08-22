@@ -2,7 +2,10 @@
 ShopPilot AI — API Routes
 Defines all REST API endpoints for Phase 1.
 """
+import uuid
 
+from app.models.product import CreateOrderRequest, VerifyPaymentRequest
+from app.services.payment_service import PaymentService
 import logging
 from functools import lru_cache
 
@@ -171,3 +174,73 @@ async def recommend(request: IntentRequest) -> RecommendResponse:
             detail="An unexpected error occurred while generating recommendations.",
         )
 
+@router.post("/orders")
+async def create_payment_order(request: CreateOrderRequest):
+    """Create a Razorpay order for a valid demo product."""
+
+    product = _get_product_service().get_product(request.product_id)
+
+    if product is None:
+        raise HTTPException(status_code=404, detail="Product not found.")
+
+    actual_price = product.price_inr
+
+    # Never trust the amount supplied by the frontend.
+    if abs(request.amount_inr - actual_price) > 0.01:
+        raise HTTPException(
+            status_code=400,
+            detail="Product price does not match the catalog price.",
+        )
+
+    receipt = f"sp_{uuid.uuid4().hex[:16]}"
+
+    try:
+        payment_service = PaymentService()
+        order = payment_service.create_order(
+            amount_inr=actual_price,
+            receipt=receipt,
+        )
+
+        settings = get_settings()
+
+        return {
+            "order_id": order["id"],
+            "amount": order["amount"],
+            "currency": order["currency"],
+            "key_id": settings.razorpay_key_id,
+            "product": product.model_dump(),
+        }
+
+    except Exception:
+        logger.exception("Failed to create Razorpay order")
+        raise HTTPException(
+            status_code=502,
+            detail="Unable to create payment order.",
+        )
+
+
+@router.post("/payments/verify")
+async def verify_payment(request: VerifyPaymentRequest):
+    """Verify a completed Razorpay payment."""
+
+    try:
+        payment_service = PaymentService()
+
+        payment_service.verify_payment(
+            order_id=request.razorpay_order_id,
+            payment_id=request.razorpay_payment_id,
+            signature=request.razorpay_signature,
+        )
+
+        return {
+            "verified": True,
+            "message": "Payment verified successfully.",
+        }
+
+    except Exception:
+        logger.exception("Razorpay payment verification failed")
+
+        raise HTTPException(
+            status_code=400,
+            detail="Payment verification failed.",
+        )

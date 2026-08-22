@@ -21,6 +21,9 @@ class Settings(BaseSettings):
     # Supabase (placeholder for Phase 2+)
     supabase_url: str = ""
     supabase_anon_key: str = ""
+        # Razorpay Configuration
+    razorpay_key_id: str = ""
+    razorpay_key_secret: str = ""
 
     # CORS origins — comma-separated string in .env, parsed as list
     cors_origins: str = "http://localhost:5173"
